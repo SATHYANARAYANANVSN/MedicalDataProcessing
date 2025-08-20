@@ -9,7 +9,7 @@ import { mockMedicalData } from "./data/mockData";
 function App() {
   const [currentView, setCurrentView] = useState("loading"); // upload, loading, table
   const [csvData, setCsvData] = useState([]);
-  const [fileName, setFileName] = useState("");
+  const [fileName, setFileName] = useState("sample_medical_data.csv");
 
   const handleFileUpload = (file, data) => {
     setFileName(file.name);
