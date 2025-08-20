@@ -7,7 +7,7 @@ import TableView from "./components/TableView";
 import { mockMedicalData } from "./data/mockData";
 
 function App() {
-  const [currentView, setCurrentView] = useState("table"); // Show table with mock data by default
+  const [currentView, setCurrentView] = useState("upload"); // upload, loading, table
   const [csvData, setCsvData] = useState([]);
   const [fileName, setFileName] = useState("");
 
