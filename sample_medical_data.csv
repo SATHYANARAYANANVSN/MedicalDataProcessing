@@ -1,0 +1,6 @@
+Patient_ID,Name,Age,Gender,Blood_Pressure,Heart_Rate,Temperature,Weight,Height,Diagnosis,Last_Visit
+P001,John Doe,45,M,120/80,72,98.6,180,5'10",Hypertension,2024-01-15
+P002,Sarah Johnson,32,F,110/70,68,98.4,125,5'6",Annual Checkup,2024-01-20
+P003,Michael Chen,28,M,150/95,85,99.1,165,5'8",Pre-hypertension,2024-01-18
+P004,Emily Rodriguez,55,F,130/85,75,98.7,140,5'4",Diabetes Type 2,2024-01-22
+P005,David Wilson,67,M,160/100,105,100.2,195,5'11",Hypertension Fever,2024-01-25
