@@ -32,3 +32,44 @@
         transform: rotate(360deg);
     }
 }
+
+/* Custom medical dashboard styles */
+.medical-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Smooth transitions for interactive elements */
+.hover-scale:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Custom scrollbar for tables */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Animation for abnormal values */
+@keyframes pulse-red {
+    0%, 100% { background-color: #fef2f2; }
+    50% { background-color: #fee2e2; }
+}
+
+.abnormal-pulse {
+    animation: pulse-red 2s infinite;
+}
