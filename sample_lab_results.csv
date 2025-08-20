@@ -1,0 +1,7 @@
+Lab_ID,Patient_ID,Test_Name,Result,Normal_Range,Status,Date
+L001,P001,Cholesterol,220,<200,High,2024-01-15
+L002,P001,Glucose,95,70-100,Normal,2024-01-15
+L003,P002,Cholesterol,180,<200,Normal,2024-01-20
+L004,P002,Glucose,85,70-100,Normal,2024-01-20
+L005,P003,Cholesterol,240,<200,High,2024-01-18
+L006,P003,Glucose,110,70-100,High,2024-01-18
