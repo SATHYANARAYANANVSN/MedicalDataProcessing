@@ -1,32 +1,21 @@
 import React, { useState, useMemo } from "react";
-import { Upload, Download, Search, Filter, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Download, X } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
-import { Input } from "./ui/input";
-import { Badge } from "./ui/badge";
 
 const TableView = ({ data, onNewUpload }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
-  const [showUpload, setShowUpload] = useState(false);
-  const itemsPerPage = 10;
 
-  // Filter data based on search term
-  const filteredData = useMemo(() => {
-    if (!searchTerm) return data;
-    return data.filter(row =>
-      Object.values(row).some(value =>
-        value?.toString().toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    );
-  }, [data, searchTerm]);
+  // Show only first 10 rows
+  const displayData = useMemo(() => {
+    return data.slice(0, 10);
+  }, [data]);
 
-  // Sort data
+  // Sort data (only the first 10 rows)
   const sortedData = useMemo(() => {
-    if (!sortConfig.key) return filteredData;
+    if (!sortConfig.key) return displayData;
     
-    const sorted = [...filteredData].sort((a, b) => {
+    const sorted = [...displayData].sort((a, b) => {
       const aValue = a[sortConfig.key] || '';
       const bValue = b[sortConfig.key] || '';
       
@@ -36,15 +25,8 @@ const TableView = ({ data, onNewUpload }) => {
     });
     
     return sorted;
-  }, [filteredData, sortConfig]);
+  }, [displayData, sortConfig]);
 
-  // Paginate data
-  const paginatedData = useMemo(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    return sortedData.slice(startIndex, startIndex + itemsPerPage);
-  }, [sortedData, currentPage]);
-
-  const totalPages = Math.ceil(sortedData.length / itemsPerPage);
   const headers = data.length > 0 ? Object.keys(data[0]) : [];
 
   const handleSort = (key) => {
