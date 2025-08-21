@@ -37,7 +37,6 @@ const TableView = ({ data, onNewUpload }) => {
   };
 
   const handleCancelFile = () => {
-    setShowUpload(true);
     onNewUpload();
   };
 
@@ -88,10 +87,10 @@ const TableView = ({ data, onNewUpload }) => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
         <div>
           <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
-            Medical Data Analysis
+            Medical Data Preview
           </h2>
           <p className="text-gray-600 mt-1">
-            {data.length} records loaded • {filteredData.length} records displayed
+            Showing first 10 records from {data.length} total records
           </p>
         </div>
         <div className="flex items-center space-x-3">
@@ -120,30 +119,6 @@ const TableView = ({ data, onNewUpload }) => {
         </div>
       </div>
 
-      {/* Search and Filter */}
-      <Card className="p-4 bg-gradient-to-r from-white to-gray-50 border border-gray-200 shadow-sm">
-        <div className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <Input
-              placeholder="Search medical records..."
-              value={searchTerm}
-              onChange={(e) => {
-                setSearchTerm(e.target.value);
-                setCurrentPage(1);
-              }}
-              className="pl-10 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-            />
-          </div>
-          <div className="flex items-center space-x-2">
-            <Filter className="h-4 w-4 text-gray-500" />
-            <Badge variant="secondary" className="text-xs bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800">
-              {filteredData.length} of {data.length} records
-            </Badge>
-          </div>
-        </div>
-      </Card>
-
       {/* Data Table */}
       <Card className="overflow-hidden shadow-lg border-0">
         <div className="bg-gradient-to-r from-gray-50 to-blue-50 px-1 py-1">
@@ -171,7 +146,7 @@ const TableView = ({ data, onNewUpload }) => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {paginatedData.map((row, rowIndex) => (
+                  {sortedData.map((row, rowIndex) => (
                     <tr 
                       key={rowIndex} 
                       className={`hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50 transition-all duration-200 ${
@@ -205,40 +180,6 @@ const TableView = ({ data, onNewUpload }) => {
                 </tbody>
               </table>
             </div>
-
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-gray-50 to-blue-50 border-t border-gray-200">
-                <div className="text-sm text-gray-700">
-                  Showing {((currentPage - 1) * itemsPerPage) + 1} to {Math.min(currentPage * itemsPerPage, sortedData.length)} of {sortedData.length} results
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                    disabled={currentPage === 1}
-                    className="hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50"
-                  >
-                    <ChevronLeft className="h-4 w-4" />
-                    Previous
-                  </Button>
-                  <span className="text-sm text-gray-700 bg-white px-3 py-1 rounded-md border">
-                    Page {currentPage} of {totalPages}
-                  </span>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-                    disabled={currentPage === totalPages}
-                    className="hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50"
-                  >
-                    Next
-                    <ChevronRight className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </Card>
